@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -146,7 +147,6 @@
             border-radius: 50px;
             font-weight: 700;
             font-size: 1.1em;
-            text-transform: uppercase;
         }
 
         .error {
@@ -194,13 +194,15 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <h1>🌸 Iris Flower Classifier</h1>
         <p class="subtitle">Predict iris species using machine learning</p>
 
         <div class="info-box">
-            <strong>ℹ️ How it works:</strong> Enter the flower's measurements below, and our AI models will predict the species using both Decision Tree and Neural Network algorithms.
+            <strong>ℹ️ How it works:</strong> Enter the flower's measurements below, and our AI models will predict the
+            species using both Decision Tree and Neural Network algorithms.
         </div>
 
         <form method="POST">
@@ -232,25 +234,26 @@
         </form>
 
         {% if prediction %}
-            {% if prediction.error %}
-                <div class="error">
-                    <h3>⚠️ Error</h3>
-                    <p>{{ prediction.error }}</p>
-                </div>
-            {% else %}
-                <div class="results">
-                    <h2>✨ Prediction Results</h2>
-                    <div class="prediction-result">
-                        <span class="prediction-label">🌳 Decision Tree Model</span>
-                        <span class="prediction-value">{{ prediction['Decision Tree'] }}</span>
-                    </div>
-                    <div class="prediction-result">
-                        <span class="prediction-label">🧠 Neural Network Model</span>
-                        <span class="prediction-value">{{ prediction['TensorFlow NN'] }}</span>
-                    </div>
-                </div>
-            {% endif %}
+        {% if prediction.error %}
+        <div class="error">
+            <h3>⚠️ Error</h3>
+            <p>{{ prediction.error }}</p>
+        </div>
+        {% else %}
+        <div class="results">
+            <h2>✨ Prediction Results</h2>
+            <div class="prediction-result">
+                <span class="prediction-label">🌳 Decision Tree Model</span>
+                <span class="prediction-value">{{ prediction['Decision Tree'] }}</span>
+            </div>
+            <div class="prediction-result">
+                <span class="prediction-label">🧠 Neural Network Model</span>
+                <span class="prediction-value">{{ prediction['TensorFlow NN'] }}</span>
+            </div>
+        </div>
+        {% endif %}
         {% endif %}
     </div>
 </body>
+
 </html>
