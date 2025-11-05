@@ -241,15 +241,15 @@
         </div>
         {% else %}
         <div class="results">
-            <h2>✨ Prediction Results</h2>
             <div class="prediction-result">
                 <span class="prediction-label">🌳 Decision Tree Model</span>
                 <span class="prediction-value">{{ prediction['Decision Tree'] }}</span>
             </div>
             <div class="prediction-result">
-                <span class="prediction-label">🧠 Neural Network Model</span>
-                <span class="prediction-value">{{ prediction['TensorFlow NN'] }}</span>
+                <span class="prediction-label">🌲 Random Forest Model</span>
+                <span class="prediction-value">{{ prediction['Random Forest'] }}</span>
             </div>
+
         </div>
         {% endif %}
         {% endif %}

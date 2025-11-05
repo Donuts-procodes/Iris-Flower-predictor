@@ -1,15 +1,14 @@
 from flask import Flask, render_template, request
 import numpy as np
 import pickle
-import tensorflow as tf
 
 app = Flask(__name__)
 
-# Load models
 with open('dt_model.pkl', 'rb') as f:
     dt_model = pickle.load(f)
 
-tf_model = tf.keras.models.load_model('tf_model.h5')
+with open('rf_model.pkl', 'rb') as f:
+    rf_model = pickle.load(f)
 
 iris_target_names = ['setosa', 'versicolor', 'virginica']
 
@@ -24,18 +23,15 @@ def index():
                         float(request.form['petal_width'])]
             features_np = np.array(features).reshape(1, -1)
 
-            # Predict using Decision Tree
             dt_pred = dt_model.predict(features_np)[0]
             dt_pred_name = iris_target_names[dt_pred]
 
-            # Predict using TensorFlow model
-            tf_pred_probs = tf_model.predict(features_np)
-            tf_pred = np.argmax(tf_pred_probs, axis=1)[0]
-            tf_pred_name = iris_target_names[tf_pred]
+            rf_pred = rf_model.predict(features_np)[0]
+            rf_pred_name = iris_target_names[rf_pred]
 
             prediction = {
                 'Decision Tree': dt_pred_name,
-                'TensorFlow NN': tf_pred_name
+                'Random Forest': rf_pred_name
             }
         except Exception as e:
             prediction = {'error': str(e)}
